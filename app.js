@@ -1,15 +1,16 @@
 'use strict';
-const memo = new Map();
-memo.set(0, 0);
-memo.set(1, 0);
-memo.set(2, 1);
+
+const memoArray = [];
+memoArray.push(0);
+memoArray.push(0);
+memoArray.push(1);
 
 function trib(n) {
-    if (memo.has(n)) {
-        return memo.get(n);
+    if (n < memoArray.length) {
+        return memoArray[n];
     }
-    const value = trib(n - 1) + trib(n - 2) + trib(n - 3);
-    memo.set(n, value);
+    const value = memoArray[n-1] + memoArray[n-2] + memoArray[n-3];
+    memoArray.push(value);
     return value;
 }
 const length = 40;
